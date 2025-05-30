@@ -2,7 +2,7 @@ const { join } = require('path')
 const express = require('express')
 const favicon = require('serve-favicon')
 const app = express()
-const PORT = 80
+const PORT = 3000
 
 app.use(favicon(join(__dirname, '..', 'views', 'public', 'favicon.ico')))
 app.set('views', join(__dirname, '..', 'views', 'public'))
