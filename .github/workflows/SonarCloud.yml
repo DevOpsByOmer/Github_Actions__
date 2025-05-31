@@ -1,6 +1,6 @@
 name: CODE SCANNING
 
-on: [workflow_dispatch]
+on: [workflow_dispatch, push]
 
 jobs:
     SonarCloud:
@@ -19,7 +19,7 @@ jobs:
         run: npm install
 
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarqube-scan-action@v4
         env:
             GITHUB_TOKEN: ${{secrets.ACCOUNT_TOKEN}}  # Needed to get PR information, if any
             SONAR_TOKEN: ${{secrets.SONAR_TOKEN}} 
