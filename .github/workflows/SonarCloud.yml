@@ -23,7 +23,15 @@ jobs:
         env:
             GITHUB_TOKEN: ${{secrets.ACCOUNT_TOKEN}}  # Needed to get PR information, if any
             SONAR_TOKEN: ${{secrets.SONAR_TOKEN}} 
-     
+
+      - name: Notify Slack
+        if: always()   # Run this step even if previous steps fail
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{secrets.SLACK_WEBHOOK }}
+          SLACK_MESSAGE: "SonarCloud scan completed for ${{ github.repository }} on commit ${{ github.sha }} by ${{ github.actor }}."
+          SLACK_COLOR: good
+
 
     
 
