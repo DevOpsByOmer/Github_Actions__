@@ -33,5 +33,16 @@ jobs:
           SLACK_COLOR: good
 
 
-    
+      - name: Send Email Notification
+        if: always ()
+        uses: dawidd6/action-send-mail@v3
+        with:
+         server_address: smtp.gmail.com # SMTP server address, e.g. smtp.gmail.com
+         server_port: 465      # SMTP port, usually 465 (SSL) or 587 (TLS)
+         username: ${{ secrets.SMTP_USERNAME }}     # Your email address used for SMTP login
+         password: ${{ secrets.SMTP_PASSWORD }}     # Password or app-specific password for SMTP login
+         subject: GitHub Actions - Workflow Failed   # Email subject line
+         body: "The workflow for repo ${{ github.repository }} failed on commit ${{ github.sha }}."  # Email body text
+         to: dvop.omer@gmail.com                  # Recipient email address (who will receive the email)
+         from: Github Actions
 
