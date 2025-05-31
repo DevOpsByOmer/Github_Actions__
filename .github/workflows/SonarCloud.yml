@@ -1,0 +1,29 @@
+name: CODE SCANNING
+
+on: [workflow_dispatch]
+
+jobs:
+    SonarCloud:
+     name: SonarCloud
+     runs-on: ubuntu-latest
+     steps: 
+      -  name: fetching code
+         uses: actions/checkout@v3
+
+      - name: Setup Nodejs
+        uses: actions/setup-node@v3
+        with:
+            node-version: 18
+        
+      - name: Install dependencies (optional, for test coverage or linting)
+        run: npm install
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+            GITHUB_TOKEN: ${{secrets.ACCOUNT_TOKEN}}  # Needed to get PR information, if any
+            SONAR_TOKEN: ${{secrets.SONAR_TOKEN}} 
+     
+
+    
+
