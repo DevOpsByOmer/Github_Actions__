@@ -25,6 +25,18 @@ jobs:
         
       - name: Install dependencies (optional, for test coverage or linting)
         run: npm install
+      
+      - name: Create sample report
+        run: |
+          mkdir report
+          echo "Workflow finished at $(date)" > report/info.txt
+
+      - name: Upload Report
+        uses: actions/upload-artifact@v3
+        with:
+         name: sample-report
+         path: report/
+      
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarqube-scan-action@v4
