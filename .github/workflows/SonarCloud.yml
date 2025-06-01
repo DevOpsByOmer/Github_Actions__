@@ -22,10 +22,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
             node-version: 18
-        
-      - name: Install dependencies (optional, for test coverage or linting)
-        run: npm install
-      
       - name: Create sample report
         run: |
           mkdir report
@@ -36,6 +32,9 @@ jobs:
         with:
          name: sample-report
          path: report/
+        
+      - name: Install dependencies (optional, for test coverage or linting)
+        run: npm install
       
 
       - name: SonarCloud Scan
