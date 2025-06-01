@@ -9,6 +9,14 @@ jobs:
      steps: 
       -  name: fetching code
          uses: actions/checkout@v3
+      
+      - name: Cache npm dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Setup Nodejs
         uses: actions/setup-node@v3
@@ -31,7 +39,6 @@ jobs:
           SLACK_WEBHOOK: ${{secrets.SLACK_WEBHOOK }}
           SLACK_MESSAGE: "SonarCloud scan completed for ${{ github.repository }} on commit ${{ github.sha }} by ${{ github.actor }}."
           SLACK_COLOR: good
-
 
       - name: Send Email Notification
         if: always ()
