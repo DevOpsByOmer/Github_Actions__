@@ -8,3 +8,5 @@ on:
 jobs:
   use-template-ci:
     uses: DevOpsByOmer/nodejs-p/.github/workflows/dev.yml@main
+    secrets:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK}}
