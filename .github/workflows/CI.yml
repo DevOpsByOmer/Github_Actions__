@@ -1,7 +1,7 @@
 # Build CI Pipelines
 
 name: Build Nodejs ci Pipeline
-on: [push,workflow_dispatch]
+on: [workflow_dispatch]
 jobs:
   build:
     strategy:
