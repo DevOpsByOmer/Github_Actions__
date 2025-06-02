@@ -1,0 +1,10 @@
+name: Use Node CI from Template Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  use-template-ci:
+    uses: DevOpsByOmer/nodejs-p/.github/workflows/dev.yml@main
