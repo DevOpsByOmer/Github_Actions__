@@ -47,7 +47,7 @@ jobs:
         if: always()   # Run this step even if previous steps fail
         uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_WEBHOOK: ${{secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK: ${{secrets.SLACK_WEBHOOK_URL}}
           SLACK_MESSAGE: "SonarCloud scan completed for ${{ github.repository }} on commit ${{ github.sha }} by ${{ github.actor }}."
           SLACK_COLOR: good
 
