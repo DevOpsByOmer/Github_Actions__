@@ -4,15 +4,18 @@ name: Build Nodejs ci Pipeline
 on: [push,workflow_dispatch]
 jobs:
   build:
+    strategy:
+      matrix:
+         node-version: [16.x, 18.x, 20.x]
     runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@v3
-
-      - name: actions/setup-node
-        uses: actions/setup-node@v2
+        
+      - name: node setup
+        uses: actions/setup-node@v3
         with:
-          node-version: '18'
+         node-version: ${{ matrix.node-version }}
       - name: install dependencies
         run: npm install
 
